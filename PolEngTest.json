@@ -1,0 +1,27 @@
+[
+  {
+    "pl": "pies",
+    "correct": ["dog"]
+  },
+  {
+    "pl": "kot",
+    "correct": ["cat"]
+  },
+  {
+    "pl": "krzeczeć",
+    "correct": ["shout","cry" ,"scream"]
+
+  },
+  {
+    "pl": "mówić",
+    "correct": ["say", "talk", "tell", "speak"]
+  },
+  {
+    "pl": "iść",
+    "correct": ["go", "walk", "come"]
+  },
+  {
+    "pl":"robić",
+    "correct": ["do", "make"]
+  }
+]

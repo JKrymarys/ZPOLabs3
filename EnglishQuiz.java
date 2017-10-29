@@ -8,6 +8,8 @@ import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class EnglishQuiz {
@@ -26,12 +28,6 @@ public class EnglishQuiz {
 
             //convert the json string back to object
             questions = gson.fromJson(br, Question[].class);
-
-            System.out.printf("load");
-            for( String s : questions[3].correct)
-            {
-                System.out.println(s);
-            }
 
 
         } catch (IOException e) {
@@ -53,14 +49,24 @@ public class EnglishQuiz {
         Collections.shuffle(pula);
         pula = pula.subList(0,5);
         int score = 0;
-
+        long startTime = System.currentTimeMillis();
         for(Question q: pula)
         {
-            if(AskQuestion(q));
-            score +=1;
-            System.out.println(score);
+            if(AskQuestion(q))
+            {
+                score +=1;
+            }
 
         }
+
+        long elapsedTime = System.currentTimeMillis() - startTime;
+
+        Date date = new Date(elapsedTime);
+        DateFormat formatter = new SimpleDateFormat("mm:ss:SSS");
+        String dateFormatted = formatter.format(date);
+
+        System.out.println(dateFormatted);
+        System.out.println(score);
     }
 
     private static boolean AskQuestion(Question q) {
@@ -70,14 +76,22 @@ public class EnglishQuiz {
 
             for (String s : q.correct)
             {
-                if(userInput == s)
+                if(userInput.equals(s))
+                {
                     isCorrect = true;
+                }
             }
 
+        System.out.println("is correct? : " + isCorrect);
+
         if(isCorrect)
+        {
             return true;
+        }
         else
+        {
             return false;
+        }
 
     }
 
